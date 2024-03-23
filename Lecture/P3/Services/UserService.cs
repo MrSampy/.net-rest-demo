@@ -27,8 +27,8 @@ namespace P3.Services
 
         public void Update(User user)
         {
-            Users.RemoveAll(x => x.Id == user.Id);
-            Users.Add(user);
+            var userToUpdate = Users.First(x => x.Id == user.Id);
+            userToUpdate.Name = user.Name;
         }
     }
 }

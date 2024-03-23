@@ -77,7 +77,7 @@ namespace P3Tests.Tests.Integration
             var updatedUser = new User { Id = userId, Name = "UpdatedName" };
 
             // Act
-            var response = await _apiBuilder.PutRequest($"api/users/{userId}", updatedUser);
+            var response = await _apiBuilder.PutRequest($"api/users", updatedUser);
             var actualUser = await _apiBuilder.GetRequest<User>($"api/users/{updatedUser.Id}");
 
             // Assert
@@ -92,7 +92,7 @@ namespace P3Tests.Tests.Integration
             var updatedUser = new User { Id = nonExistingUserId, Name = "UpdatedName" };
 
             // Act
-            var response = await _apiBuilder.PuttRequestReturnResponse($"api/users/{nonExistingUserId}", updatedUser);
+            var response = await _apiBuilder.PuttRequestReturnResponse($"api/users", updatedUser);
 
             // Assert
             Assert.AreEqual(response.StatusCode, HttpStatusCode.NotFound);

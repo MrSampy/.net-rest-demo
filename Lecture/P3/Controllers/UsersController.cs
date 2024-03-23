@@ -36,24 +36,24 @@ namespace P3.Controllers
 
         // POST: api/users
         [HttpPost]
-        public IActionResult CreateUser(User user)
+        public IActionResult CreateUser([FromBody]User user)
         {
             _userService.GetUsers().Add(user);
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
         }
 
-        // PUT: api/users/{id}
-        [HttpPut("{id}")]
-        public IActionResult UpdateUser(int id, User user)
+        // PUT: api/users/
+        [HttpPut]
+        public IActionResult UpdateUser([FromBody] User user)
         {
-            var existingUser = _userService.GetUsers().FirstOrDefault(u => u.Id == id);
+            var existingUser = _userService.GetUsers().FirstOrDefault(u => u.Id == user.Id);
             if (existingUser == null)
             {
                 return NotFound();
             }
 
             _userService.Update(user); // Update the user's name
-            return NoContent();
+            return Ok();
         }
 
         // Delete: api/users/{id}
@@ -66,7 +66,7 @@ namespace P3.Controllers
                 return NotFound();
             }
             _userService.Delete(id);
-            return NoContent();
+            return Ok();
         }
     }
 }
