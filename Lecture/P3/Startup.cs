@@ -21,12 +21,15 @@ namespace P3
 
             services.AddEndpointsApiExplorer();
 
+            services.AddSwaggerGen();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();
