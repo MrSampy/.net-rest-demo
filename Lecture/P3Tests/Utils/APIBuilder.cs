@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using P3;
 using System.Net;
 
-namespace P3Tests.Tests
+namespace P3Tests.Utils
 {
     public class APIBuilder
     {

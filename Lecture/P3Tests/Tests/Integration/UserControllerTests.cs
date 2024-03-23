@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Routing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using P3.Models;
+using P3Tests.Utils;
 using System.Net;
 
-namespace P3Tests.Tests
+namespace P3Tests.Tests.Integration
 {
     [TestClass]
     public class UserControllerTests
@@ -37,7 +38,7 @@ namespace P3Tests.Tests
 
             // Assert
             Assert.IsNotNull(response);
-            Assert.AreEqual(userId, response.Id);            
+            Assert.AreEqual(userId, response.Id);
         }
 
         [TestMethod]
@@ -50,7 +51,7 @@ namespace P3Tests.Tests
             var response = await _apiBuilder.GetRequestReturnResponse($"api/users/{nonExistingUserId}");
 
             // Assert
-            Assert.AreEqual(response.StatusCode, HttpStatusCode.NotFound);            
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.NotFound);
         }
 
         [TestMethod]
@@ -65,7 +66,7 @@ namespace P3Tests.Tests
 
             // Assert
             Assert.AreEqual(newUser.Id, actualUser.Id);
-            Assert.AreEqual(newUser.Name,actualUser.Name);
+            Assert.AreEqual(newUser.Name, actualUser.Name);
         }
 
         [TestMethod]
@@ -80,7 +81,7 @@ namespace P3Tests.Tests
             var actualUser = await _apiBuilder.GetRequest<User>($"api/users/{updatedUser.Id}");
 
             // Assert
-            Assert.AreEqual(updatedUser.Name, actualUser.Name);            
+            Assert.AreEqual(updatedUser.Name, actualUser.Name);
         }
 
         [TestMethod]
@@ -108,7 +109,7 @@ namespace P3Tests.Tests
             var users = await _apiBuilder.GetRequest<List<User>>("api/users");
 
             // Assert
-            Assert.AreEqual(expectedUsersCount, users.Count);            
+            Assert.AreEqual(expectedUsersCount, users.Count);
         }
 
         [TestMethod]
