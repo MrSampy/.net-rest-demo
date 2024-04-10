@@ -17,8 +17,6 @@ namespace P3
 
             services.AddControllers();
 
-            services.AddHealthChecks();
-
             services.AddEndpointsApiExplorer();
 
             services.AddSwaggerGen();
